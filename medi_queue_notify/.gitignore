@@ -45,4 +45,4 @@ app.*.map.json
 /android/app/release
 
 
-/lib/home/pages/welcome_page
+lib/home/pages/welcome_page.dart
