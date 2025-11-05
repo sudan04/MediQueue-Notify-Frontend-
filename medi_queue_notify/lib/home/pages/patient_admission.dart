@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/home/pages/welcome_page.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+class PatientAdmission extends StatefulWidget {
+  const PatientAdmission({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<PatientAdmission> createState() => _PatientAdmissionState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _PatientAdmissionState extends State<PatientAdmission> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController ageController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -28,29 +27,18 @@ class _SignupPageState extends State<SignupPage> {
           onTap: () => FocusScope.of(context).unfocus(),
           child: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 24),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Title
                   const Text(
-                    "Create Your Account",
+                    "Patient Admission",
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                       color: Colors.black87,
                     ),
-                  ),
-
-                  const SizedBox(height: 20),
-                  const Text(
-                    "Join MediQueue Notify to streamline your healthcare experience",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black38,
-                    ),
-                    textAlign: TextAlign.center,
                   ),
 
                   const SizedBox(height: 30),
@@ -62,7 +50,7 @@ class _SignupPageState extends State<SignupPage> {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.person),
                       labelText: 'Full Name',
-                      hintText: 'Enter your Full Name',
+                      hintText: "Enter patient's full name",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -71,7 +59,6 @@ class _SignupPageState extends State<SignupPage> {
 
                   const SizedBox(height: 20),
 
-                  // Gender selection using standard Radio widgets
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -146,7 +133,7 @@ class _SignupPageState extends State<SignupPage> {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.calendar_today_outlined),
                       labelText: 'Age',
-                      hintText: 'Enter your Age',
+                      hintText: "Enter patient's age",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -199,9 +186,9 @@ class _SignupPageState extends State<SignupPage> {
                     keyboardType: TextInputType.multiline,
                     maxLines: 2,
                     decoration: InputDecoration(
-                      labelText: 'Desease Details (Optional)',
+                      labelText: 'Initial Medical Concern',
                       hintText:
-                          'Briefly describe any relevant medical conditions or chronic diseases',
+                          "Briefly describe the patient's primary concern or symptoms",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -218,7 +205,7 @@ class _SignupPageState extends State<SignupPage> {
                         color: Colors.white,
                       ),
                       label: const Text(
-                        'Sign Up',
+                        'Register Patient',
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                       style: ElevatedButton.styleFrom(
@@ -227,14 +214,7 @@ class _SignupPageState extends State<SignupPage> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => WelcomePage(),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                     ),
                   ),
                 ],
