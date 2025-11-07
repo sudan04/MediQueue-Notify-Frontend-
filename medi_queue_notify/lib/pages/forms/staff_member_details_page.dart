@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:medi_queue_notify/Model/staff.dart';
 import 'package:medi_queue_notify/widgets/add_certificate_form.dart';
 
 import '../../Model/certificate.dart';
@@ -407,10 +408,7 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
                       height: 48,
                       width: double.infinity,
                       child: ElevatedButton.icon(
-                        icon: const Icon(
-                          Icons.save,
-                          color: Colors.white,
-                        ),
+                        icon: const Icon(Icons.save, color: Colors.white),
                         label: const Text(
                           'Save Staff Details',
                           style: TextStyle(fontSize: 16, color: Colors.white),
@@ -421,7 +419,16 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
                             borderRadius: BorderRadius.circular(8),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          final Staff staff = Staff(
+                            name: nameController.text,
+                            role: selectedRole,
+                            shift: selectedShift,
+                            status: selectedStatus,
+                            imageUrl: _selectedImage.toString(),
+                          );
+                          Navigator.pop(context, staff);
+                        },
                       ),
                     ),
                   ],
