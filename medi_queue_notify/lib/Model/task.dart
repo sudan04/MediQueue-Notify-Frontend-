@@ -1,8 +1,10 @@
+import 'package:medi_queue_notify/Model/staff.dart';
+
 class TaskModel {
   int? id; // optional - useful when saving to backend
   String title;
   String description;
-  String? resident; // assigned resident
+  Staff? resident; // assigned resident
   String? priority;
   String? role; // assigned staff role
   String? repeatFrequency; // e.g. "Everyday"

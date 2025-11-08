@@ -3,6 +3,7 @@ import 'package:medi_queue_notify/pages/forms/staff_member_details_page.dart';
 import 'package:medi_queue_notify/pages/forms/task_page.dart';
 import 'package:medi_queue_notify/pages/home_page.dart';
 import 'package:medi_queue_notify/pages/patient_admission.dart';
+import 'package:medi_queue_notify/pages/task_management.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -39,18 +40,32 @@ class WelcomePage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => StaffMemberDetailsPage(title: "Staff Member Details",),
+                      builder: (context) =>
+                          StaffMemberDetailsPage(title: "Staff Member Details"),
                     ),
                   );
                 },
                 child: Text("Staff Details"),
               ),
-              TextButton(onPressed: () {Navigator.push(
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => Task(),
-                    ),
-                  );}, child: Text("Add Task")),
+                    MaterialPageRoute(builder: (context) => TaskPage()),
+                  );
+                },
+                child: Text("Add Task"),
+              ),
+
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TaskManagement()),
+                  );
+                },
+                child: Text("Task Management"),
+              ),
             ],
           ),
         ),

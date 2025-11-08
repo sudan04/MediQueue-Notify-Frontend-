@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:medi_queue_notify/Model/staff.dart';
 import 'package:medi_queue_notify/Model/task.dart';
 import 'package:medi_queue_notify/utils/lists.dart';
 
-class Task extends StatefulWidget {
-  const Task({super.key});
+class TaskPage extends StatefulWidget {
+  const TaskPage({super.key});
 
   @override
-  State<Task> createState() => _TaskState();
+  State<TaskPage> createState() => _TaskState();
 }
 
-class _TaskState extends State<Task> {
-  final List<String> residents = ["Pravesh", "Sujan", "Nisil"];
-  String? selectedResident;
+class _TaskState extends State<TaskPage> {
+  final List<Staff> residents = Lists.allStaff;
+  Staff? selectedResident;
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController descController = TextEditingController();
 
-  final List<String> priorities = ["High", "Medium", "Low"];
+  final List<String> priorities = ["High Priority", "Medium Priority", "Low Priority"];
   String? selectedPriority;
 
   final List<String> roles = ["Doctor", "Nurse", "Supporting Staff"];
@@ -44,6 +45,9 @@ class _TaskState extends State<Task> {
 
   TextEditingController hourController = TextEditingController();
   TextEditingController minController = TextEditingController();
+
+  static List<String> status = ["Pending", "Overdue", "In Progres", "Completed"];
+  String? selectedStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +82,7 @@ class _TaskState extends State<Task> {
                     children: [
                       Text('Resident', style: TextStyle(fontSize: 16)),
                       SizedBox(height: 8),
-                      DropdownButtonFormField<String>(
+                      DropdownButtonFormField<Staff>(
                         value: selectedResident,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -90,13 +94,24 @@ class _TaskState extends State<Task> {
                           ),
                         ),
                         hint: const Text('Select Resident'),
-                        items: residents.map((String resident) {
-                          return DropdownMenuItem<String>(
+                        items: residents.map((Staff resident) {
+                          return DropdownMenuItem<Staff>(
                             value: resident,
-                            child: Text(resident),
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 18,
+                                  backgroundImage: NetworkImage(
+                                    resident.imageUrl!,
+                                  ),
+                                ),
+                                SizedBox(width: 15),
+                                Text(resident.name!),
+                              ],
+                            ),
                           );
                         }).toList(),
-                        onChanged: (String? value) {
+                        onChanged: (Staff? value) {
                           setState(() {
                             selectedResident = value;
                           });
@@ -641,7 +656,7 @@ class _TaskState extends State<Task> {
     );
 
     setState(() {
-      Lists.taskList.add(newTask);
+      Navigator.pop(context, newTask);
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
