@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/Model/staff.dart';
-import 'package:medi_queue_notify/utils/staff_list.dart';
+import 'package:medi_queue_notify/utils/lists.dart';
 import 'package:medi_queue_notify/widgets/staff_tile.dart';
 
 class StaffManagement extends StatefulWidget {
@@ -31,7 +31,7 @@ class _StaffManagementState extends State<StaffManagement>
   }
 
   List<Staff> getFilteredStaff(String role) {
-    return StaffList.allStaff
+    return Lists.allStaff
         .where(
           (staff) =>
               staff.role == role &&

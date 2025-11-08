@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/pages/forms/staff_member_details_page.dart';
+import 'package:medi_queue_notify/pages/forms/task_page.dart';
 import 'package:medi_queue_notify/pages/home_page.dart';
 import 'package:medi_queue_notify/pages/patient_admission.dart';
 
@@ -44,7 +45,12 @@ class WelcomePage extends StatelessWidget {
                 },
                 child: Text("Staff Details"),
               ),
-              TextButton(onPressed: () {}, child: Text("")),
+              TextButton(onPressed: () {Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Task(),
+                    ),
+                  );}, child: Text("Add Task")),
             ],
           ),
         ),
