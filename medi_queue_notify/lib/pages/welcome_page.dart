@@ -3,6 +3,7 @@ import 'package:medi_queue_notify/pages/forms/staff_member_details_page.dart';
 import 'package:medi_queue_notify/pages/forms/task_page.dart';
 import 'package:medi_queue_notify/pages/home_page.dart';
 import 'package:medi_queue_notify/pages/patient_admission.dart';
+import 'package:medi_queue_notify/pages/payment_gateway_page.dart';
 import 'package:medi_queue_notify/pages/task_management.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -65,6 +66,18 @@ class WelcomePage extends StatelessWidget {
                   );
                 },
                 child: Text("Task Management"),
+              ),
+
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentGatewayPage(),
+                    ),
+                  );
+                },
+                child: Text("Payment"),
               ),
             ],
           ),
