@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/pages/forms/signup_page.dart';
+import 'package:medi_queue_notify/pages/auth/signup_page.dart';
 import 'package:medi_queue_notify/pages/welcome_page.dart';
 import 'package:medi_queue_notify/utils/validators.dart';
 

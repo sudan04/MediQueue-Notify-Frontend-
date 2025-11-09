@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/Model/task.dart';
-import 'package:medi_queue_notify/pages/forms/task_page.dart';
+import 'package:medi_queue_notify/pages/task/task_page.dart';
 import 'package:medi_queue_notify/utils/lists.dart';
 import 'package:medi_queue_notify/widgets/task_tile.dart';
 

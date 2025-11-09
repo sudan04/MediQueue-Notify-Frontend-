@@ -11,7 +11,7 @@ class TaskTile extends StatelessWidget {
       case 'Overdue':
         return Colors.red;
       case 'Pending':
-        return Colors.blueGrey;
+        return const Color.fromARGB(255, 14, 20, 99);
       case 'In Progress':
         return Colors.blue;
       default:
@@ -152,9 +152,9 @@ class TaskTile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
-                    "Pending",
+                    task.status!,
                     style: TextStyle(
-                      color: getStatusColor("Pending"),
+                      color: getStatusColor(task.status!),
                       fontWeight: FontWeight.bold,
                       fontSize: 13,
                     ),

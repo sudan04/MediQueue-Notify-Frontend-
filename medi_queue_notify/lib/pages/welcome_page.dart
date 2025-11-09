@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/pages/forms/staff_member_details_page.dart';
-import 'package:medi_queue_notify/pages/forms/task_page.dart';
+import 'package:medi_queue_notify/pages/staff/staff_member_details_page.dart';
+import 'package:medi_queue_notify/pages/task/task_page.dart';
 import 'package:medi_queue_notify/pages/home_page.dart';
-import 'package:medi_queue_notify/pages/patient_admission.dart';
-import 'package:medi_queue_notify/pages/payment_gateway_page.dart';
-import 'package:medi_queue_notify/pages/task_management.dart';
+import 'package:medi_queue_notify/pages/auth/payment_gateway_page.dart';
+import 'package:medi_queue_notify/pages/task/task_management.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -18,15 +17,6 @@ class WelcomePage extends StatelessWidget {
           padding: EdgeInsets.all(20),
           child: Column(
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PatientAdmission()),
-                  );
-                },
-                child: Text("Patient_Admisson"),
-              ),
               TextButton(
                 onPressed: () {
                   Navigator.push(

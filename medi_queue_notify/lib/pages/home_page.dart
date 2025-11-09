@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/Model/staff.dart';
 import 'package:medi_queue_notify/data/notifiers.dart'
     show selectedPageNotifier;
-import 'package:medi_queue_notify/pages/forms/staff_member_details_page.dart';
+import 'package:medi_queue_notify/pages/staff/staff_member_details_page.dart';
 import 'package:medi_queue_notify/pages/notifications_page.dart';
 import 'package:medi_queue_notify/pages/projects_page.dart';
 import 'package:medi_queue_notify/pages/queue_overview.dart';
-import 'package:medi_queue_notify/pages/staff_management.dart';
+import 'package:medi_queue_notify/pages/staff/staff_management.dart';
 import 'package:medi_queue_notify/utils/lists.dart';
 import 'package:medi_queue_notify/widgets/bottom_navigation.dart';
 

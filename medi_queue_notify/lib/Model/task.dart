@@ -15,6 +15,7 @@ class TaskModel {
   String? endTime; // store as string like "18:00"
   int? repeatHour;
   int? repeatMinute;
+  String? status;
 
   TaskModel({
     this.id,
@@ -31,6 +32,7 @@ class TaskModel {
     this.endTime,
     this.repeatHour,
     this.repeatMinute,
+    this.status,
   });
 
   /// Convert model to JSON for backend API
@@ -50,6 +52,7 @@ class TaskModel {
       'endTime': endTime,
       'repeatHour': repeatHour,
       'repeatMinute': repeatMinute,
+      'status': status,
     };
   }
 
@@ -72,9 +75,7 @@ class TaskModel {
       endTime: json['endTime'],
       repeatHour: json['repeatHour'],
       repeatMinute: json['repeatMinute'],
+      status: json['status'],
     );
   }
-
 }
-  
-
