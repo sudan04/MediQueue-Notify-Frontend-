@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/pages/auth/signup_page.dart';
+import 'package:medi_queue_notify/pages/home_page.dart';
 import 'package:medi_queue_notify/pages/welcome_page.dart';
 import 'package:medi_queue_notify/utils/validators.dart';
+import 'package:medi_queue_notify/widgets/custom_elevated_button.dart';
+import 'package:medi_queue_notify/widgets/custom_outline_button.dart';
+import 'package:medi_queue_notify/widgets/custom_password_field.dart';
+import 'package:medi_queue_notify/widgets/custom_radio_selector.dart';
+import 'package:medi_queue_notify/widgets/custom_text_form_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,8 +21,8 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-
-  String _selectedType = 'Super Admin';
+  final List<String> types = ["Super Admin", "Tenant", "Patient"];
+  String? _selectedType;
 
   bool isLoading = false;
   bool isPasswordVisible = false;
@@ -67,69 +73,35 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     const SizedBox(height: 20),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          'Type',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              buildRadioOption("Super Admin"),
-                              buildRadioOption("Tenant"),
-                              buildRadioOption("Patient"),
-                            ],
-                          ),
-                        ),
-                      ],
+                    CustomRadioSelector(
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedType = value;
+                        });
+                      },
+                      selectedItem: _selectedType,
+                      radioOptions: types,
+                      labelText: "Type",
                     ),
-
                     SizedBox(height: 20),
 
                     // Phone Number field
-                    TextFormField(
+                    CustomTextFormField(
+                      prefixIcon: Icons.phone,
                       controller: phoneController,
-                      validator: Validators.validatePhone,
+                      labelText: "Phone Number",
+                      hintText: "Enter your phone number",
                       keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.phone),
-                        labelText: 'Phone Number',
-                        hintText: 'Enter your phone number',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
+                      validator: Validators.validatePhone,
                     ),
+
                     const SizedBox(height: 20),
 
                     // Password field
-                    TextFormField(
+                    CustomPasswordField(
                       controller: passwordController,
-                      validator: Validators.validatePassword,
-                      obscureText: isPasswordVisible ? false : true,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.lock),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-                          ),
-                          onPressed: () => setState(() => isPasswordVisible = !isPasswordVisible),
-                        ),
-                        labelText: 'Password',
-                        hintText: 'Enter your password',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
+                      labelText: "Password",
+                      hintText: "Enter your password",
                     ),
                     const SizedBox(height: 40),
 
@@ -137,26 +109,13 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       width: double.infinity,
                       height: 48,
-                      child: ElevatedButton.icon(
-                        icon: const Icon(Icons.login, color: Colors.white),
-                        label: isLoading
-                            ? CircularProgressIndicator(color: Colors.white)
-                            : const Text(
-                                'Log In',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white,
-                                ),
-                              ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF00AEEF),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
+                      child: CustomElevatedButton(
+                        icon: Icons.login,
+                        label: "Log In",
+                        onPressed: () => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         ),
-                        onPressed: () {
-                          isLoading ? null : handleLogin();
-                        },
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -165,29 +124,15 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       width: double.infinity,
                       height: 48,
-                      child: OutlinedButton.icon(
-                        icon: const Icon(Icons.person_add_alt_1),
-                        label: const Text(
-                          'Sign Up',
-                          style: TextStyle(fontSize: 16),
+                      child: CustomOutlineButton(
+                        icon: Icons.person_add_alt_1,
+                        label: "Sign Up",
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignupPage()),
                         ),
-                        style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Colors.green, width: 2),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          foregroundColor: Colors.green,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return SignupPage();
-                              },
-                            ),
-                          );
-                        },
+                        borderColor: Colors.lightGreen,
+                        textColor: Colors.lightGreen,
                       ),
                     ),
                   ],
@@ -227,19 +172,5 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     setState(() => isLoading = false);
-  }
-
-  Widget buildRadioOption(String type) {
-    return Row(
-      children: [
-        Radio<String>(
-          value: type,
-          groupValue: _selectedType,
-          onChanged: (value) => setState(() => _selectedType = value!),
-        ),
-        const SizedBox(width: 4),
-        Text(type),
-      ],
-    );
   }
 }

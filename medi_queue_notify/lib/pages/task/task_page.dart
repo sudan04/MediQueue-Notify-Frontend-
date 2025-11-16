@@ -130,6 +130,7 @@ class _TaskState extends State<TaskPage> {
 
                   //description field
                   CustomTextFormField(
+                    maxLine: 2,
                     controller: descController,
                     labelText: "Description",
                     hintText: "Enter description",
@@ -339,9 +340,7 @@ class _TaskState extends State<TaskPage> {
       repeatMinute: int.tryParse(minController.text),
     );
 
-    setState(() {
-      Navigator.pop(context, newTask);
-    });
+    Navigator.pop(context, newTask);
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

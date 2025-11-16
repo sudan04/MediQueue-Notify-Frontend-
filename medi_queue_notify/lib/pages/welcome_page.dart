@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:medi_queue_notify/pages/create_home.dart';
+import 'package:medi_queue_notify/pages/home_list.dart';
+import 'package:medi_queue_notify/pages/patient/edit_patient_details.dart';
+import 'package:medi_queue_notify/pages/patient/medical_notepad.dart';
+import 'package:medi_queue_notify/pages/patient/patient_admissions_page.dart';
+import 'package:medi_queue_notify/pages/patient/patient_handover.dart';
 import 'package:medi_queue_notify/pages/staff/staff_member_details_page.dart';
 import 'package:medi_queue_notify/pages/task/task_page.dart';
 import 'package:medi_queue_notify/pages/home_page.dart';
 import 'package:medi_queue_notify/pages/auth/payment_gateway_page.dart';
 import 'package:medi_queue_notify/pages/task/task_management.dart';
+import 'package:medi_queue_notify/utils/lists.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -42,10 +49,12 @@ class WelcomePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => TaskPage()),
+                    MaterialPageRoute(
+                      builder: (context) => EditPatientDetails(),
+                    ),
                   );
                 },
-                child: Text("Add Task"),
+                child: Text("Edit patient details"),
               ),
 
               TextButton(
@@ -68,6 +77,56 @@ class WelcomePage extends StatelessWidget {
                   );
                 },
                 child: Text("Payment"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PatientAdmissionsPage(patients: Lists.patientList),
+                    ),
+                  );
+                },
+                child: Text("Patient Admissions"),
+              ),
+
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PatientHandover()),
+                  );
+                },
+                child: Text("Patient Handover"),
+              ),
+
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MedicalNotepad()),
+                  );
+                },
+                child: Text("Medical Notepad"),
+              ),
+
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeList()),
+                  );
+                },
+                child: Text("Home List"),
+              ),TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CreateHomePage()),
+                  );
+                },
+                child: Text("Create Home"),
               ),
             ],
           ),

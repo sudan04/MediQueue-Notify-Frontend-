@@ -47,7 +47,7 @@ class CustomDropdown<T> extends StatelessWidget {
             ),
           ),
           isExpanded: true,
-          hint: Text(hintText),
+          hint: value == null ? Text(hintText): null,
           items: items.map((item) {
             return DropdownMenuItem<T>(value: item, child: itemBuilder(item));
           }).toList(),

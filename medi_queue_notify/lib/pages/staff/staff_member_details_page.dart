@@ -2,7 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medi_queue_notify/Model/staff.dart';
-import 'package:medi_queue_notify/widgets/add_certificate_form.dart';
+import 'package:medi_queue_notify/pages/staff/widgets/certificate_data_table.dart';
+import 'package:medi_queue_notify/pages/staff/widgets/add_certificate_form.dart';
+import 'package:medi_queue_notify/widgets/custom_dropdown.dart';
+import 'package:medi_queue_notify/widgets/custom_elevated_button.dart';
+import 'package:medi_queue_notify/widgets/custom_image_picker.dart';
+import 'package:medi_queue_notify/widgets/custom_text_form_field.dart';
 
 import '../../Model/certificate.dart';
 
@@ -17,7 +22,6 @@ class StaffMemberDetailsPage extends StatefulWidget {
 
 class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
   File? _selectedImage;
-  final ImagePicker _picker = ImagePicker();
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
@@ -59,44 +63,6 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
   List<String> shifts = ["Morning", "Day", "Evening", "Night"];
 
   String? selectedShift;
-
-  // Opens a dialog to pick source
-  void pickImageSource() async {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) => SafeArea(
-        child: Wrap(
-          children: [
-            ListTile(
-              leading: const Icon(Icons.photo_library),
-              title: const Text('Gallery'),
-              onTap: () {
-                pickImage(ImageSource.gallery);
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.camera_alt),
-              title: const Text('Camera'),
-              onTap: () {
-                pickImage(ImageSource.camera);
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future<void> pickImage(ImageSource source) async {
-    final XFile? picked = await _picker.pickImage(source: source);
-    if (picked != null) {
-      setState(() {
-        _selectedImage = File(picked.path);
-      });
-    }
-  }
 
   List<Certificate> certificates = [
     Certificate(
@@ -157,185 +123,88 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 60,
-                      backgroundImage: _selectedImage != null
-                          ? FileImage(_selectedImage!)
-                          : null,
-                      child: _selectedImage == null
-                          ? const Icon(Icons.person, size: 60)
-                          : null,
-                    ),
-                    const SizedBox(height: 16),
-
-                    TextButton.icon(
-                      onPressed: pickImageSource,
-                      icon: const Icon(Icons.upload_file),
-                      label: const Text("Upload Image"),
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        side: BorderSide(color: Colors.black26),
-                      ),
+                    CustomImagePicker(
+                      onImagePicked: (file) {
+                        setState(() {
+                          _selectedImage = file;
+                        });
+                      },
                     ),
 
                     SizedBox(height: 20),
 
-                    TextField(
+                    // name field
+                    CustomTextFormField(
+                      prefixIcon: Icons.person,
                       controller: nameController,
+                      labelText: 'Full Name',
+                      hintText: 'Enter full name',
                       keyboardType: TextInputType.name,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.person),
-                        labelText: 'Full Name',
-                        hintText: 'Enter full name',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
                     ),
 
                     const SizedBox(height: 20),
-                    TextField(
+
+                    // phone field
+                    CustomTextFormField(
                       controller: phoneController,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.phone),
-                        labelText: 'Phone Number',
-                        hintText: 'e.g., 9844756596',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
+                      prefixIcon: Icons.phone,
+                      labelText: 'Phone Number',
+                      hintText: 'e.g., 9844756596',
                     ),
 
                     const SizedBox(height: 20),
 
-                    TextField(
+                    //email field
+                    CustomTextFormField(
                       controller: emailController,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.email),
-                        labelText: 'Email',
-                        hintText: 'janedoe@example.com',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
+                      prefixIcon: Icons.email,
+                      labelText: 'Email',
+                      hintText: 'janedoe@example.com',
                     ),
 
                     SizedBox(height: 20),
+
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Shift',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-
-                        //dropdown for Shift
-                        DropdownButtonFormField<String>(
+                        //shift dropdown
+                        CustomDropdown(
                           value: selectedShift,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 16,
-                            ),
-                          ),
-                          hint: const Text('Select Shift'),
-                          items: roles.map((String shift) {
-                            return DropdownMenuItem<String>(
-                              value: shift,
-                              child: Text(shift),
-                            );
-                          }).toList(),
-                          onChanged: (String? value) {
+                          items: shifts,
+                          itemBuilder: (item) => Text(item),
+                          onChanged: (value) {
                             setState(() {
                               selectedShift = value;
                             });
                           },
+                          labelText: "Shift",
+                          hintText: "Select Shift",
                         ),
 
                         SizedBox(height: 20),
-                        const Text(
-                          'Role',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-
-                        //dropdown for role
-                        DropdownButtonFormField<String>(
+                        // role dropdown
+                        CustomDropdown(
                           value: selectedRole,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 16,
-                            ),
-                          ),
-                          hint: const Text('Select Role'),
-                          items: roles.map((String role) {
-                            return DropdownMenuItem<String>(
-                              value: role,
-                              child: Text(role),
-                            );
-                          }).toList(),
-                          onChanged: (String? value) {
-                            setState(() {
-                              selectedRole = value;
-                              selectedSpc = null;
-                            });
-                          },
+                          items: roles,
+                          itemBuilder: (item) => Text(item),
+                          onChanged: (value) => selectedRole = value,
+                          labelText: "Role",
+                          hintText: "Select Role",
                         ),
 
                         SizedBox(height: 20),
-                        const Text(
-                          'Specialist Area',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
 
                         // dropdown for specialist area
-                        DropdownButtonFormField<String>(
+                        CustomDropdown(
                           value: selectedSpc,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 16,
-                            ),
-                          ),
-                          hint: const Text('Select Specialist Area'),
-                          items: getSpc(selectedRole)!.map((String spec) {
-                            return DropdownMenuItem<String>(
-                              value: spec,
-                              child: Text(spec),
-                            );
-                          }).toList(),
-                          onChanged: (String? value) {
-                            setState(() {
-                              selectedSpc = value;
-                            });
-                          },
+                          items: getSpc(selectedRole),
+                          itemBuilder: (item) => Text(item),
+                          onChanged: (value) => selectedSpc = value,
+                          labelText: "Specialist Area",
+                          hintText: "Select Specialist Area",
                         ),
-
                         SizedBox(height: 30),
                         const Text(
                           'Certificate History',
@@ -345,57 +214,13 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
                           ),
                         ),
 
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: DataTable(
-                            columns: const [
-                              DataColumn(label: Text('Certificate Name')),
-                              DataColumn(label: Text('Issue Date')),
-                              DataColumn(label: Text('Status')),
-                            ],
-                            rows: certificates
-                                .map(
-                                  (c) => DataRow(
-                                    cells: [
-                                      DataCell(Text(c.name)),
-                                      DataCell(
-                                        Text(
-                                          "${c.issueDate.year}-${c.issueDate.month.toString().padLeft(2, '0')}-${c.issueDate.day.toString().padLeft(2, '0')}",
-                                        ),
-                                      ),
-                                      DataCell(
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 8,
-                                            vertical: 4,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: c.status == "Active"
-                                                ? Colors.blue
-                                                : c.status == "Expired"
-                                                ? Colors.red
-                                                : Colors.grey,
-                                            borderRadius: BorderRadius.circular(
-                                              12,
-                                            ),
-                                          ),
-                                          child: Text(
-                                            c.status,
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                                .toList(),
-                          ),
-                        ),
+                        // certificate data table
+                        CertificateDataTable(certificates: certificates),
                       ],
                     ),
                     const SizedBox(height: 12),
+
+                    // add certificate button
                     Center(
                       child: ElevatedButton(
                         onPressed: _showAddCertificateForm,
@@ -407,18 +232,9 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
                     SizedBox(
                       height: 48,
                       width: double.infinity,
-                      child: ElevatedButton.icon(
-                        icon: const Icon(Icons.save, color: Colors.white),
-                        label: const Text(
-                          'Save Staff Details',
-                          style: TextStyle(fontSize: 16, color: Colors.white),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF00AEEF),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
+                      child: CustomElevatedButton(
+                        icon: Icons.save,
+                        label: "Save Staff Details",
                         onPressed: () {
                           final Staff staff = Staff(
                             name: nameController.text,
@@ -441,7 +257,7 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
     );
   }
 
-  List<String>? getSpc(String? role) {
+  List<String> getSpc(String? role) {
     if (role == "Doctor") {
       return doctorSpcs;
     } else if (role == "Nurse") {

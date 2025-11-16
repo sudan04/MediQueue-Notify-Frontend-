@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/pages/welcome_page.dart';
+import 'package:medi_queue_notify/widgets/custom_elevated_button.dart';
+import 'package:medi_queue_notify/widgets/custom_password_field.dart';
+import 'package:medi_queue_notify/widgets/custom_radio_selector.dart';
+import 'package:medi_queue_notify/widgets/custom_text_form_field.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -15,7 +19,8 @@ class _SignupPageState extends State<SignupPage> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController ddController = TextEditingController();
 
-  String selectedGender = 'Male';
+  final List<String> genderOptions = ["Male", "Female", "Other"];
+  String? selectedGender;
 
   bool isPasswordVisible = false;
 
@@ -38,6 +43,7 @@ class _SignupPageState extends State<SignupPage> {
         toolbarHeight: 40,
         centerTitle: true,
       ),
+
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: SingleChildScrollView(
@@ -55,189 +61,85 @@ class _SignupPageState extends State<SignupPage> {
                   ),
                   textAlign: TextAlign.center,
                 ),
-      
+
                 const SizedBox(height: 30),
-      
+
                 // Name field
-                TextField(
+                CustomTextFormField(
                   controller: nameController,
                   keyboardType: TextInputType.name,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.person),
-                    labelText: 'Full Name',
-                    hintText: 'Enter your Full Name',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+                  labelText: "Full Name",
+                  hintText: "Enter your Full Name",
                 ),
-      
+
                 const SizedBox(height: 20),
-      
-                  
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Gender',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: 'Male',
-                              groupValue: selectedGender,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedGender = value!;
-                                });
-                              },
-                            ),
-                            const SizedBox(width: 4),
-                            const Text('Male'),
-                          ],
-                        ),
-                        const SizedBox(width: 16),
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: 'Female',
-                              groupValue: selectedGender,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedGender = value!;
-                                });
-                              },
-                            ),
-                            const SizedBox(width: 4),
-                            const Text('Female'),
-                          ],
-                        ),
-                        const SizedBox(width: 16),
-                        Row(
-                          children: [
-                            Radio<String>(
-                              value: 'Other',
-                              groupValue: selectedGender,
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedGender = value!;
-                                });
-                              },
-                            ),
-                            const SizedBox(width: 4),
-                            const Text('Other'),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
+
+                // Gender radio options
+                CustomRadioSelector(
+                  radioOptions: genderOptions,
+                  selectedItem: selectedGender,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedGender = value;
+                    });
+                  },
+                  labelText: "Gender",
                 ),
-      
+
                 const SizedBox(height: 20),
-      
-                TextField(
+
+                // age field
+                CustomTextFormField(
                   controller: ageController,
+                  labelText: "Age",
+                  hintText: "Enter your Age",
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.calendar_today_outlined),
-                    labelText: 'Age',
-                    hintText: 'Enter your Age',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+                  prefixIcon: Icons.calendar_today_outlined,
                 ),
-      
+
                 SizedBox(height: 20),
-                TextField(
+
+                // phone number
+                CustomTextFormField(
                   controller: phoneController,
+                  labelText: "Phone Number",
+                  hintText: "e.g., 9844732345",
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.phone),
-                    labelText: 'Phone Number',
-                    hintText: 'e.g., 9844756596',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+                  prefixIcon: Icons.phone,
                 ),
-      
+
                 SizedBox(height: 20),
-                TextField(
+
+                CustomPasswordField(
                   controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: !isPasswordVisible,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.lock),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        isPasswordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
-                      onPressed: () => setState(() {
-                        isPasswordVisible = !isPasswordVisible;
-                      }),
-                    ),
-                    labelText: 'Password',
-                    hintText: 'Create a secure password',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+                  labelText: "Password",
+                  hintText: "Create a secure password",
                 ),
-      
+
                 SizedBox(height: 20),
-      
-                TextField(
-                  controller: ddController,
+
+                // description field
+                CustomTextFormField(
+                  controller: ageController,
+                  labelText: "Disease Details (Optional)",
+                  hintText:
+                      "Briefly describe any relevant medical conditions or chronic diseases",
                   keyboardType: TextInputType.multiline,
-                  maxLines: 2,
-                  decoration: InputDecoration(
-                    labelText: 'Disease Details (Optional)',
-                    hintText:
-                        'Briefly describe any relevant medical conditions or chronic diseases',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
+                  prefixIcon: Icons.description,
+                  maxLine: 2,
                 ),
-      
+
                 SizedBox(height: 20),
                 SizedBox(
                   width: double.infinity,
                   height: 48,
-                  child: ElevatedButton.icon(
-                    icon: const Icon(
-                      Icons.person_add_alt_1,
-                      color: Colors.white,
+                  child: CustomElevatedButton(
+                    icon: Icons.person_add_alt_1,
+                    label: "Sign Up",
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => WelcomePage()),
                     ),
-                    label: const Text(
-                      'Sign Up',
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF00AEEF),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => WelcomePage(),
-                        ),
-                      );
-                    },
                   ),
                 ),
               ],
