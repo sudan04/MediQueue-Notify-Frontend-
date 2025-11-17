@@ -3,6 +3,7 @@ import 'package:medi_queue_notify/Model/medicine.dart';
 import 'package:medi_queue_notify/Model/patient.dart';
 import 'package:medi_queue_notify/Model/staff.dart';
 import 'package:medi_queue_notify/Model/task.dart';
+import 'package:medi_queue_notify/Model/tenant.dart';
 
 class Lists {
   static List<Staff> allStaff = [
@@ -116,12 +117,11 @@ class Lists {
     ),
     Patient(
       id: "P001",
-      name: "John Doe", 
+      name: "John Doe",
       type: "Outpatient",
       admissionDate: "2025-05-28",
       status: "Admitted",
     ),
-    
   ];
 
   static List<Medicine> medicines = [
@@ -165,6 +165,27 @@ class Lists {
       description:
           "Patient reports improved appetite and reduced fatigue. Labs reviewed — all within normal limits.",
       dateTime: "2024-07-24 04:30 PM",
+    ),
+  ];
+
+  static List<Tenant> tenants = [
+    Tenant(
+      name: "John Doe",
+      phone: 9834763322,
+      admin: Lists.allStaff[0],
+      logoUrl: 'https://i.pravatar.cc/150?img=1',
+    ),
+    Tenant(
+      name: "Alice",
+      phone: 9722763322,
+      admin: Lists.allStaff[1],
+      logoUrl: 'https://i.pravatar.cc/150?img=1',
+    ),
+    Tenant(
+      name: "Jackson",
+      phone: 9834889322,
+      admin: Lists.allStaff[2],
+      logoUrl: 'https://i.pravatar.cc/150?img=1',
     ),
   ];
 }

@@ -10,6 +10,7 @@ import 'package:medi_queue_notify/pages/task/task_page.dart';
 import 'package:medi_queue_notify/pages/home_page.dart';
 import 'package:medi_queue_notify/pages/auth/payment_gateway_page.dart';
 import 'package:medi_queue_notify/pages/task/task_management.dart';
+import 'package:medi_queue_notify/pages/tenant_list.dart';
 import 'package:medi_queue_notify/utils/lists.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -119,7 +120,8 @@ class WelcomePage extends StatelessWidget {
                   );
                 },
                 child: Text("Home List"),
-              ),TextButton(
+              ),
+              TextButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -127,6 +129,15 @@ class WelcomePage extends StatelessWidget {
                   );
                 },
                 child: Text("Create Home"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TenantList()),
+                  );
+                },
+                child: Text("Tenant List"),
               ),
             ],
           ),

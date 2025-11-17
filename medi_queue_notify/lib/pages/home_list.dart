@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_queue_notify/pages/create_home.dart';
 import 'package:medi_queue_notify/widgets/home_list_table.dart';
 
 class HomeList extends StatefulWidget {
@@ -9,6 +10,7 @@ class HomeList extends StatefulWidget {
 }
 
 class _HomeListState extends State<HomeList> {
+  final List<String> homes = ["Home1", "Home2", "Home3", "Home4", "Home5"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +26,26 @@ class _HomeListState extends State<HomeList> {
 
         actions: [
           Padding(
-            padding: const EdgeInsets.only(top: 10,right: 10),
+            padding: const EdgeInsets.only(top: 10, right: 10),
             child: ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: () async {
+                String? home = await Navigator.push<String?>(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreateHomePage()),
+                );
+
+                if (home != null) {
+                  setState(() {
+                    homes.add(home);
+                  });
+                }
+              },
               label: Text("Create"),
               icon: Icon(Icons.add),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+                foregroundColor: Colors.white,
+              ),
             ),
           ),
         ],
@@ -38,9 +55,7 @@ class _HomeListState extends State<HomeList> {
         padding: const EdgeInsets.all(12),
         child: Column(
           mainAxisSize: MainAxisSize.max,
-          children: [
-            HomeListTable(),
-          ],
+          children: [HomeListTable(homes: homes)],
         ),
       ),
     );

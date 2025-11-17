@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomeListTable extends StatelessWidget {
-  HomeListTable({super.key});
-
-  final List<String> homes = ["Home1", "Home2", "Home3", "Home4", "Home5"];
+  const HomeListTable({super.key, required this.homes});
+  final List<String> homes;
 
   @override
   Widget build(BuildContext context) {

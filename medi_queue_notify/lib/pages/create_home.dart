@@ -148,13 +148,11 @@ class _CreateHomePageState extends State<CreateHomePage> {
               const SizedBox(height: 10),
 
               //  Add Floor Button
-             
-                ElevatedButton.icon(
-                  onPressed: addFloor,
-                  icon: const Icon(Icons.add),
-                  label: const Text("Add Floor"),
-                ),
-            
+              ElevatedButton.icon(
+                onPressed: addFloor,
+                icon: const Icon(Icons.add),
+                label: const Text("Add Floor"),
+              ),
 
               const SizedBox(height: 30),
 
@@ -164,7 +162,9 @@ class _CreateHomePageState extends State<CreateHomePage> {
                 child: CustomElevatedButton(
                   icon: Icons.done,
                   label: "Submit",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context, homeNameController.text);
+                  },
                 ),
               ),
             ],
