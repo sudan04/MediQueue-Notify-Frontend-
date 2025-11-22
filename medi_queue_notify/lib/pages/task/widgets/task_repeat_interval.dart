@@ -24,15 +24,18 @@ class TaskRepeatInterval extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: TextFormField(
-                controller: hourController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'Hours',
-                  hintText: '0',
-                  prefixIcon: const Icon(Icons.timer_outlined),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+              child: Container(
+                decoration: BoxDecoration(color: Colors.white70),
+                child: TextFormField(
+                  controller: hourController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: 'Hours',
+                    hintText: '0',
+                    prefixIcon: const Icon(Icons.timer_outlined),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),

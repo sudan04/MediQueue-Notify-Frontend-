@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/pages/create_home.dart';
+import 'package:medi_queue_notify/pages/create_tenant.dart';
 import 'package:medi_queue_notify/pages/home_list.dart';
 import 'package:medi_queue_notify/pages/patient/edit_patient_details.dart';
 import 'package:medi_queue_notify/pages/patient/medical_notepad.dart';
 import 'package:medi_queue_notify/pages/patient/patient_admissions_page.dart';
 import 'package:medi_queue_notify/pages/patient/patient_handover.dart';
+import 'package:medi_queue_notify/pages/queue_overview.dart';
 import 'package:medi_queue_notify/pages/staff/staff_member_details_page.dart';
 import 'package:medi_queue_notify/pages/task/task_page.dart';
 import 'package:medi_queue_notify/pages/home_page.dart';
@@ -138,6 +140,25 @@ class WelcomePage extends StatelessWidget {
                   );
                 },
                 child: Text("Tenant List"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CreateTenant()),
+                  );
+                },
+                child: Text("Tenant Creation"),
+              ),
+
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => QueueOverview()),
+                  );
+                },
+                child: Text("Queue Overview"),
               ),
             ],
           ),

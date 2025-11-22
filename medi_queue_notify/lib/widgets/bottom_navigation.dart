@@ -22,9 +22,9 @@ class BottomNavigation extends StatelessWidget {
             onTabChange: (value) => selectedPageNotifier.value = value,
             tabs: [
               GButton(icon: Icons.queue, text: 'Queue'),
-              GButton(icon: Icons.notifications, text: 'Alerts'),
+              // GButton(icon: Icons.notifications, text: 'Alerts'),
               GButton(icon: Icons.people, text: 'Staff'),
-              GButton(icon: Icons.dashboard_outlined, text: 'Projects',),
+              // GButton(icon: Icons.dashboard_outlined, text: 'Projects',),
             ],
           );
         },

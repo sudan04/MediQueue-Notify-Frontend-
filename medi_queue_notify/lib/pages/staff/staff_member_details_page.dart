@@ -166,46 +166,46 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
 
                     SizedBox(height: 20),
 
+                    CustomDropdown(
+                      value: selectedShift,
+                      items: shifts,
+                      itemBuilder: (item) => Text(item),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedShift = value;
+                        });
+                      },
+                      labelText: "Shift",
+                      hintText: "Select Shift",
+                    ),
+
+                    SizedBox(height: 20),
+                    // role dropdown
+                    CustomDropdown(
+                      value: selectedRole,
+                      items: roles,
+                      itemBuilder: (item) => Text(item),
+                      onChanged: (value) => selectedRole = value,
+                      labelText: "Role",
+                      hintText: "Select Role",
+                    ),
+
+                    SizedBox(height: 20),
+
+                    // dropdown for specialist area
+                    CustomDropdown(
+                      value: selectedSpc,
+                      items: getSpc(selectedRole),
+                      itemBuilder: (item) => Text(item),
+                      onChanged: (value) => selectedSpc = value,
+                      labelText: "Specialist Area",
+                      hintText: "Select Specialist Area",
+                    ),
+
+                    SizedBox(height: 30),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        //shift dropdown
-                        CustomDropdown(
-                          value: selectedShift,
-                          items: shifts,
-                          itemBuilder: (item) => Text(item),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedShift = value;
-                            });
-                          },
-                          labelText: "Shift",
-                          hintText: "Select Shift",
-                        ),
-
-                        SizedBox(height: 20),
-                        // role dropdown
-                        CustomDropdown(
-                          value: selectedRole,
-                          items: roles,
-                          itemBuilder: (item) => Text(item),
-                          onChanged: (value) => selectedRole = value,
-                          labelText: "Role",
-                          hintText: "Select Role",
-                        ),
-
-                        SizedBox(height: 20),
-
-                        // dropdown for specialist area
-                        CustomDropdown(
-                          value: selectedSpc,
-                          items: getSpc(selectedRole),
-                          itemBuilder: (item) => Text(item),
-                          onChanged: (value) => selectedSpc = value,
-                          labelText: "Specialist Area",
-                          hintText: "Select Specialist Area",
-                        ),
-                        SizedBox(height: 30),
                         const Text(
                           'Certificate History',
                           style: TextStyle(
@@ -213,13 +213,11 @@ class _StaffMemberDetailsPageState extends State<StaffMemberDetailsPage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-
                         // certificate data table
                         CertificateDataTable(certificates: certificates),
+                        const SizedBox(height: 12),
                       ],
                     ),
-                    const SizedBox(height: 12),
-
                     // add certificate button
                     Center(
                       child: ElevatedButton(

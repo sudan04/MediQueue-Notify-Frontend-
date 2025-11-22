@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/Model/staff.dart';
 import 'package:medi_queue_notify/utils/lists.dart';
-import 'package:medi_queue_notify/widgets/staff_tile.dart';
+import 'package:medi_queue_notify/pages/staff/widgets/staff_tile.dart';
 
 class StaffManagement extends StatefulWidget {
   const StaffManagement({super.key});
@@ -14,8 +14,6 @@ class _StaffManagementState extends State<StaffManagement>
     with TickerProviderStateMixin {
   late TabController _tabController;
   final TextEditingController _searchController = TextEditingController();
-
-  
 
   @override
   void initState() {

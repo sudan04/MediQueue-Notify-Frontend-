@@ -40,6 +40,7 @@ class CustomDatePicker extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
             decoration: BoxDecoration(
+              color: Colors.white70,
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(8),
             ),

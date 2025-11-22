@@ -16,22 +16,29 @@ class CustomTextFormField extends StatelessWidget {
     required this.hintText,
     this.prefixIcon,
     required this.keyboardType,
-    this.maxLine= 1,
+    this.maxLine = 1,
     this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      maxLines: maxLine,
-      controller: controller,
-      keyboardType: keyboardType,
-      validator: validator,
-      decoration: InputDecoration(
-        prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
-        labelText: labelText.trim() != ''? labelText: null,
-        hintText: hintText,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white70,
+        
+      ),
+
+      child: TextFormField(
+        maxLines: maxLine,
+        controller: controller,
+        keyboardType: keyboardType,
+        validator: validator,
+        decoration: InputDecoration(
+          prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
+          labelText: labelText.trim() != '' ? labelText : null,
+          hintText: hintText,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        ),
       ),
     );
   }

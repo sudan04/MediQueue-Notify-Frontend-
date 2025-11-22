@@ -27,7 +27,7 @@ class _HomeListState extends State<HomeList> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(top: 10, right: 10),
-            child: ElevatedButton.icon(
+            child: IconButton(
               onPressed: () async {
                 String? home = await Navigator.push<String?>(
                   context,
@@ -40,12 +40,7 @@ class _HomeListState extends State<HomeList> {
                   });
                 }
               },
-              label: Text("Create"),
               icon: Icon(Icons.add),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-              ),
             ),
           ),
         ],

@@ -18,11 +18,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    selectedPageNotifier.value = 0;
+  }
+
   final List<Map<String, Widget>> pages = [
-    {"Queue Overview":  QueueOverview()},
-    {"Notifications":  NotificationsPage()},
+    {"Queue Overview": QueueOverview()},
     {"Staff Management": StaffManagement()},
-    {"Projects":  ProjectsPage()},
   ];
 
   @override
@@ -52,36 +56,37 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
+
+            actions: [
+              if (selectedPage == 1)
+                  IconButton(
+                    onPressed: () async {
+                      final newStaff = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const StaffMemberDetailsPage(
+                            title: "Staff Member Details",
+                          ),
+                        ),
+                      );
+
+                      // If the page returned a new staff object, add it to list
+                      if (newStaff != null && newStaff is Staff) {
+                        // Find the StaffManagement widget and update its list
+
+                        setState(() {
+                          Lists.allStaff.add(newStaff);
+                        });
+                      }
+                    },
+                    icon: Icon(Icons.add),
+                  ),
+            ],
           ),
           bottomNavigationBar: BottomNavigation(),
           body: pageWidget,
           drawer: SafeArea(child: Drawer()),
-          floatingActionButton: selectedPage == 2
-              ? FloatingActionButton.extended(
-                  onPressed: () async {
-                    // 👇 Navigate to AddStaffPage and wait for result
-                    final newStaff = await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const StaffMemberDetailsPage(
-                          title: "Staff Member Details",
-                        ),
-                      ),
-                    );
-
-                    // If the page returned a new staff object, add it to list
-                    if (newStaff != null && newStaff is Staff) {
-                      // Find the StaffManagement widget and update its list
-
-                      setState(() {
-                        Lists.allStaff.add(newStaff);
-                      });
-                    }
-                  },
-                  icon: const Icon(Icons.add),
-                  label: const Text("Add Staff"),
-                )
-              : null,
+          
         );
       },
     );

@@ -27,17 +27,16 @@ class _TenantListState extends State<TenantList> {
         actions: [
           Padding(
             padding: const EdgeInsets.only(top: 10, right: 10),
-            child: ElevatedButton.icon(
-              onPressed: () {},
-              label: Text("Create"),
-              icon: Icon(Icons.add),
-            ),
+            child: 
+            IconButton(onPressed: () {
+              
+            }, icon: Icon(Icons.add))
           ),
         ],
       ),
 
       body: Padding(
-        padding: const EdgeInsets.all(12),  
+        padding: const EdgeInsets.all(12),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [TenantListTable(tenants: Lists.tenants)],

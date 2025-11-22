@@ -43,6 +43,7 @@ class CustomTimePicker extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(8),
+              color: Colors.white70,
             ),
 
             child: Row(

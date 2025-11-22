@@ -6,11 +6,13 @@ class CustomImagePicker extends StatefulWidget {
   final File? imageFile; // local file image (for new image)
   final String? imageUrl; // network image (for existing staff)
   final ValueChanged<File?> onImagePicked;
+  final bool isLogo;
 
   const CustomImagePicker({
     super.key,
     this.imageFile,
     this.imageUrl,
+    this.isLogo = false,
     required this.onImagePicked,
   });
 
@@ -84,7 +86,9 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
                         : null)
                     as ImageProvider?,
           child: _selectedImage == null && widget.imageUrl == null
-              ? const Icon(Icons.person, size: 60)
+              ? widget.isLogo
+                    ? Icon(Icons.image, size: 60)
+                    : Icon(Icons.person, size: 60)
               : null,
         ),
         const SizedBox(height: 16),

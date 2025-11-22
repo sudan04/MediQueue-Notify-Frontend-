@@ -35,23 +35,26 @@ class CustomDropdown<T> extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8),
-        DropdownButtonFormField<T>(
-          initialValue: initialValue,
-          validator: validator,
-          value: value,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 16,
+        Container(
+          decoration: BoxDecoration(color: Colors.white70),
+          child: DropdownButtonFormField<T>(
+            initialValue: initialValue,
+            validator: validator,
+            value: value,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 16,
+              ),
             ),
+            isExpanded: true,
+            hint: value == null ? Text(hintText): null,
+            items: items.map((item) {
+              return DropdownMenuItem<T>(value: item, child: itemBuilder(item));
+            }).toList(),
+            onChanged: onChanged,
           ),
-          isExpanded: true,
-          hint: value == null ? Text(hintText): null,
-          items: items.map((item) {
-            return DropdownMenuItem<T>(value: item, child: itemBuilder(item));
-          }).toList(),
-          onChanged: onChanged,
         ),
       ],
     );
