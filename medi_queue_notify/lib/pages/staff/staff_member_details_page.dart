@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:medi_queue_notify/Model/staff.dart';
+import 'package:medi_queue_notify/Model/demo/staff.dart';
 import 'package:medi_queue_notify/pages/staff/widgets/certificate_data_table.dart';
 import 'package:medi_queue_notify/pages/staff/widgets/add_certificate_form.dart';
 import 'package:medi_queue_notify/widgets/custom_dropdown.dart';
@@ -9,7 +9,7 @@ import 'package:medi_queue_notify/widgets/custom_elevated_button.dart';
 import 'package:medi_queue_notify/widgets/custom_image_picker.dart';
 import 'package:medi_queue_notify/widgets/custom_text_form_field.dart';
 
-import '../../Model/certificate.dart';
+import '../../Model/demo/certificate.dart';
 
 class StaffMemberDetailsPage extends StatefulWidget {
   const StaffMemberDetailsPage({super.key, required this.title});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../Model/certificate.dart';
+import '../../../Model/demo/certificate.dart';
 
 class AddCertificateForm extends StatefulWidget {
   final void Function(Certificate) onAdd;

@@ -1,4 +1,4 @@
-import 'package:medi_queue_notify/Model/staff.dart';
+import 'package:medi_queue_notify/Model/demo/staff.dart';
 
 class TaskModel {
   int? id; // optional - useful when saving to backend

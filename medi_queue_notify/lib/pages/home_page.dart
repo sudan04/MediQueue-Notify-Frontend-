@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/Model/staff.dart';
+import 'package:medi_queue_notify/Model/demo/staff.dart';
 import 'package:medi_queue_notify/data/notifiers.dart'
     show selectedPageNotifier;
 import 'package:medi_queue_notify/pages/staff/staff_member_details_page.dart';

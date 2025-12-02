@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/Model/medicine.dart';
+import 'package:medi_queue_notify/Model/demo/medicine.dart';
 
 class MedicineScheduleTable extends StatelessWidget {
   final List<Medicine> medicines;

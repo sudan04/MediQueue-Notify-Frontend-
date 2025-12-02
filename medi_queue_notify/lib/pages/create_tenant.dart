@@ -40,220 +40,222 @@ class _CreateTenantState extends State<CreateTenant> {
         centerTitle: true,
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 24),
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                children: [
-                  Card(
-                    color: const Color.fromARGB(255, 228, 243, 242),
-                    elevation: 1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 8,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 24),
+          child: GestureDetector(
+            onTap: () => FocusScope.of(context).unfocus(),
+            child: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    Card(
+                      color: const Color.fromARGB(255, 228, 243, 242),
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      child: SizedBox(
-                        child: Text(
-                          "This page facilities the creation of new tenants and ensure their successful integration into the system",
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 8,
+                        ),
+                        child: SizedBox(
+                          child: Text(
+                            "This page facilities the creation of new tenants and ensure their successful integration into the system",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color.fromARGB(221, 131, 119, 119),
+                            ),
+                            overflow: TextOverflow.fade,
+                            maxLines: 2,
+                          ),
+                        ),
+                      ),
+                    ),
+        
+                    SizedBox(height: 20),
+                    // tenant name
+                    CustomTextFormField(
+                      controller: tenantNameController,
+                      labelText: "Enter Name",
+                      hintText: "Enter name of tenant",
+                      keyboardType: TextInputType.text,
+                    ),
+        
+                    SizedBox(height: 20),
+        
+                    // Email field
+                    CustomTextFormField(
+                      controller: tenantEmailController,
+                      labelText: "Enter Email",
+                      hintText: "Enter email of tenant",
+                      keyboardType: TextInputType.text,
+                    ),
+                    SizedBox(height: 20),
+        
+                    //website field
+                    CustomTextFormField(
+                      controller: tenantWebsiteController,
+                      labelText: "Enter Website",
+                      hintText: "Enter website of tenant",
+                      keyboardType: TextInputType.text,
+                    ),
+                    SizedBox(height: 20),
+        
+                    //contact field
+                    CustomTextFormField(
+                      controller: tenantNameController,
+                      labelText: "Enter Contact",
+                      hintText: "Enter contact of tenant",
+                      keyboardType: TextInputType.phone,
+                    ),
+        
+                    SizedBox(height: 20),
+                    // tenant logo
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Tenant Logo",
                           style: TextStyle(
+                            fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            color: Color.fromARGB(221, 131, 119, 119),
                           ),
-                          overflow: TextOverflow.fade,
-                          maxLines: 2,
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-
-                  SizedBox(height: 20),
-                  // tenant name
-                  CustomTextFormField(
-                    controller: tenantNameController,
-                    labelText: "Enter Name",
-                    hintText: "Enter name of tenant",
-                    keyboardType: TextInputType.text,
-                  ),
-
-                  SizedBox(height: 20),
-
-                  // Email field
-                  CustomTextFormField(
-                    controller: tenantEmailController,
-                    labelText: "Enter Email",
-                    hintText: "Enter email of tenant",
-                    keyboardType: TextInputType.text,
-                  ),
-                  SizedBox(height: 20),
-
-                  //website field
-                  CustomTextFormField(
-                    controller: tenantWebsiteController,
-                    labelText: "Enter Website",
-                    hintText: "Enter website of tenant",
-                    keyboardType: TextInputType.text,
-                  ),
-                  SizedBox(height: 20),
-
-                  //contact field
-                  CustomTextFormField(
-                    controller: tenantNameController,
-                    labelText: "Enter Contact",
-                    hintText: "Enter contact of tenant",
-                    keyboardType: TextInputType.phone,
-                  ),
-
-                  SizedBox(height: 20),
-                  // tenant logo
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Tenant Logo",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
+        
+                    SizedBox(height: 10),
+        
+                    // logo picker
+                    Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white70,
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(18)),
                       ),
-                    ],
-                  ),
-
-                  SizedBox(height: 10),
-
-                  // logo picker
-                  Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white70,
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.all(Radius.circular(18)),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomImagePicker(
-                            isLogo: true,
-                            onImagePicked: (file) {
-                              setState(() {
-                                _selectedImage = file;
-                              });
-                            },
-                          ),
-
-                          const SizedBox(width: 20),
-
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    "Upload tenant logo",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomImagePicker(
+                              isLogo: true,
+                              onImagePicked: (file) {
+                                setState(() {
+                                  _selectedImage = file;
+                                });
+                              },
+                            ),
+        
+                            const SizedBox(width: 20),
+        
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Upload tenant logo",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      softWrap: true,
                                     ),
-                                    softWrap: true,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    "JPEG, PNG format, up to 10MB",
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey,
+                                    SizedBox(height: 4),
+                                    Text(
+                                      "JPEG, PNG format, up to 10MB",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey,
+                                      ),
+                                      softWrap: true,
                                     ),
-                                    softWrap: true,
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(height: 30),
-                  // tenant admin info
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // title
-                      Text(
-                        "Tenant Admin Info",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                          ],
                         ),
                       ),
-
-                      Text(
-                        "General information for tenant admin",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-
-                      SizedBox(height: 20),
-
-                      // admin full name field
-                      CustomTextFormField(
-                        controller: adminNameController,
-                        labelText: "Full Name",
-                        hintText: "Enter admin's full name",
-                        keyboardType: TextInputType.text,
-                      ),
-
-                      SizedBox(height: 20),
-                      // admin email field
-                      CustomTextFormField(
-                        controller: adminEmailController,
-                        labelText: "Email Address",
-                        hintText: "abc@gmail.com",
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-
-                      SizedBox(height: 20),
-
-                      // admin username field
-                      CustomTextFormField(
-                        controller: adminUsernameController,
-                        labelText: "Username",
-                        hintText: "Enter admin's username",
-                        keyboardType: TextInputType.text,
-                      ),
-
-                      SizedBox(height: 20),
-                      // admin phone field
-                      CustomTextFormField(
-                        controller: adminEmailController,
-                        labelText: "Phone Number",
-                        hintText: "Phone Number",
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-
-                      SizedBox(height: 20),
-                    ],
-                  ),
-
-                  // submit button
-                  SizedBox(
-                    width: double.infinity,
-                    child: CustomElevatedButton(
-                      label: "Submit",
-                      onPressed: () {},
                     ),
-                  ),
-                ],
+        
+                    SizedBox(height: 30),
+                    // tenant admin info
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // title
+                        Text(
+                          "Tenant Admin Info",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+        
+                        Text(
+                          "General information for tenant admin",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+        
+                        SizedBox(height: 20),
+        
+                        // admin full name field
+                        CustomTextFormField(
+                          controller: adminNameController,
+                          labelText: "Full Name",
+                          hintText: "Enter admin's full name",
+                          keyboardType: TextInputType.text,
+                        ),
+        
+                        SizedBox(height: 20),
+                        // admin email field
+                        CustomTextFormField(
+                          controller: adminEmailController,
+                          labelText: "Email Address",
+                          hintText: "abc@gmail.com",
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+        
+                        SizedBox(height: 20),
+        
+                        // admin username field
+                        CustomTextFormField(
+                          controller: adminUsernameController,
+                          labelText: "Username",
+                          hintText: "Enter admin's username",
+                          keyboardType: TextInputType.text,
+                        ),
+        
+                        SizedBox(height: 20),
+                        // admin phone field
+                        CustomTextFormField(
+                          controller: adminEmailController,
+                          labelText: "Phone Number",
+                          hintText: "Phone Number",
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+        
+                        SizedBox(height: 20),
+                      ],
+                    ),
+        
+                    // submit button
+                    SizedBox(
+                      width: double.infinity,
+                      child: CustomElevatedButton(
+                        label: "Submit",
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

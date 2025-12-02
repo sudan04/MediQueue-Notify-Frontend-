@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/Model/medicine.dart';
+import 'package:medi_queue_notify/Model/demo/medicine.dart';
 import 'package:medi_queue_notify/widgets/custom_text_form_field.dart';
 
-import '../../../Model/certificate.dart';
+import '../../../Model/demo/certificate.dart';
 
 class AddMedicineForm extends StatefulWidget {
   final void Function(Medicine) onAdd;

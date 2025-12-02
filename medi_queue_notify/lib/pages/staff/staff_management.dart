@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/Model/staff.dart';
+import 'package:medi_queue_notify/Model/demo/staff.dart';
 import 'package:medi_queue_notify/utils/lists.dart';
 import 'package:medi_queue_notify/pages/staff/widgets/staff_tile.dart';
 

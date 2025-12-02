@@ -1,9 +1,9 @@
-import 'package:medi_queue_notify/Model/medical_note.dart';
-import 'package:medi_queue_notify/Model/medicine.dart';
-import 'package:medi_queue_notify/Model/patient.dart';
-import 'package:medi_queue_notify/Model/staff.dart';
-import 'package:medi_queue_notify/Model/task.dart';
-import 'package:medi_queue_notify/Model/tenant.dart';
+import 'package:medi_queue_notify/Model/demo/medical_note.dart';
+import 'package:medi_queue_notify/Model/demo/medicine.dart';
+import 'package:medi_queue_notify/Model/demo/patient.dart';
+import 'package:medi_queue_notify/Model/demo/staff.dart';
+import 'package:medi_queue_notify/Model/demo/task.dart';
+import 'package:medi_queue_notify/Model/demo/tenant.dart';
 
 class Lists {
   static List<Staff> allStaff = [

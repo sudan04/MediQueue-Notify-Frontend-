@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/Model/staff.dart';
+import 'package:medi_queue_notify/Model/demo/staff.dart';
 
 class StaffTile extends StatelessWidget {
   final Staff staff;

@@ -9,7 +9,7 @@ class Certificate {
     required this.status,
   });
 
-  /// ✅ Converts JSON from backend → Certificate object
+  /// Converts JSON from backend → Certificate object
   factory Certificate.fromJson(Map<String, dynamic> json) {
     return Certificate(
       name: json['name'] ?? '',
@@ -18,7 +18,7 @@ class Certificate {
     );
   }
 
-  /// ✅ Converts Certificate → JSON for API POST/PUT requests
+  /// Converts Certificate → JSON for API POST/PUT requests
   Map<String, dynamic> toJson() {
     return {
       'name': name,

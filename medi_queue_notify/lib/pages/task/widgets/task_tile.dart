@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/Model/task.dart';
+import 'package:medi_queue_notify/Model/demo/task.dart';
 
 class TaskTile extends StatelessWidget {
   final TaskModel task;

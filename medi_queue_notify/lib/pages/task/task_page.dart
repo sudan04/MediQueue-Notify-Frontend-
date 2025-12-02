@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/Model/staff.dart';
-import 'package:medi_queue_notify/Model/task.dart';
+import 'package:medi_queue_notify/Model/demo/staff.dart';
+import 'package:medi_queue_notify/Model/demo/task.dart';
 import 'package:medi_queue_notify/pages/task/task_validator.dart';
 import 'package:medi_queue_notify/pages/task/widgets/task_repeat_interval.dart';
 import 'package:medi_queue_notify/utils/lists.dart';

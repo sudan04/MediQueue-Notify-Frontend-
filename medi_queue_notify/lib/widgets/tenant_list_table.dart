@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/Model/tenant.dart';
+import 'package:medi_queue_notify/Model/demo/tenant.dart';
 
 class TenantListTable extends StatelessWidget {
   const TenantListTable({super.key, required this.tenants});
