@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/pages/create_home.dart';
-import 'package:medi_queue_notify/pages/create_tenant.dart';
-import 'package:medi_queue_notify/pages/home_list.dart';
-import 'package:medi_queue_notify/pages/patient/edit_patient_details.dart';
-import 'package:medi_queue_notify/pages/patient/medical_notepad.dart';
-import 'package:medi_queue_notify/pages/patient/patient_admissions_page.dart';
-import 'package:medi_queue_notify/pages/patient/patient_handover.dart';
-import 'package:medi_queue_notify/pages/queue_overview.dart';
-import 'package:medi_queue_notify/pages/staff/staff_member_details_page.dart';
-import 'package:medi_queue_notify/pages/task/task_page.dart';
-import 'package:medi_queue_notify/pages/home_page.dart';
-import 'package:medi_queue_notify/pages/auth/payment_gateway_page.dart';
-import 'package:medi_queue_notify/pages/task/task_management.dart';
-import 'package:medi_queue_notify/pages/tenant_list.dart';
-import 'package:medi_queue_notify/utils/lists.dart';
+import 'package:medi_queue_notify/features/home/pages/create_home.dart';
+import 'package:medi_queue_notify/features/tenant/pages/create_tenant.dart';
+import 'package:medi_queue_notify/features/home/pages/home_list.dart';
+import 'package:medi_queue_notify/features/patient/pages/patient_details_form_page.dart';
+import 'package:medi_queue_notify/features/patient/pages/medical_notepad_page.dart';
+import 'package:medi_queue_notify/features/patient/pages/patient_admissions_page.dart';
+import 'package:medi_queue_notify/features/patient/pages/patient_handover_page.dart';
+import 'package:medi_queue_notify/features/dashboard/pages/queue_overview.dart';
+import 'package:medi_queue_notify/features/staff/staff_member_details_page.dart';
+import 'package:medi_queue_notify/features/task/pages/task_form_page.dart';
+import 'package:medi_queue_notify/features/dashboard/pages/home_page.dart';
+import 'package:medi_queue_notify/features/auth/pages/payment_gateway_page.dart';
+import 'package:medi_queue_notify/features/task/pages/task_management_page.dart';
+import 'package:medi_queue_notify/features/tenant/pages/tenant_list.dart';
+import 'package:medi_queue_notify/core/utils/lists.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medi_queue_notify/pages/auth/login_page.dart';
+import 'package:medi_queue_notify/features/auth/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
