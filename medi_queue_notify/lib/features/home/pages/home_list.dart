@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_queue_notify/features/dashboard/widgets/drawerr.dart';
 import 'package:medi_queue_notify/features/home/pages/create_home.dart';
 import 'package:medi_queue_notify/shared/widgets/home_list_table.dart';
 
@@ -45,6 +46,7 @@ class _HomeListState extends State<HomeList> {
           ),
         ],
       ),
+      drawer: HomePageDrawer(),
 
       body: Padding(
         padding: const EdgeInsets.all(12),

@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:medi_queue_notify/Model/demo/staff.dart';
 import 'package:medi_queue_notify/features/staff/widgets/certificate_data_table.dart';
 import 'package:medi_queue_notify/features/staff/widgets/add_certificate_form.dart';
@@ -12,9 +11,7 @@ import 'package:medi_queue_notify/shared/widgets/custom_text_form_field.dart';
 import '../../Model/demo/certificate.dart';
 
 class StaffMemberDetailsPage extends StatefulWidget {
-  const StaffMemberDetailsPage({super.key, required this.title});
-
-  final String title;
+  const StaffMemberDetailsPage({super.key});
 
   @override
   State<StaffMemberDetailsPage> createState() => _StaffMemberDetailsPageState();

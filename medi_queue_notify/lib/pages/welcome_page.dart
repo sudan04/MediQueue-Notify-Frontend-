@@ -6,9 +6,8 @@ import 'package:medi_queue_notify/features/patient/pages/patient_details_form_pa
 import 'package:medi_queue_notify/features/patient/pages/medical_notepad_page.dart';
 import 'package:medi_queue_notify/features/patient/pages/patient_admissions_page.dart';
 import 'package:medi_queue_notify/features/patient/pages/patient_handover_page.dart';
-import 'package:medi_queue_notify/features/dashboard/pages/queue_overview.dart';
+import 'package:medi_queue_notify/features/dashboard/widgets/queue_overview.dart';
 import 'package:medi_queue_notify/features/staff/staff_member_details_page.dart';
-import 'package:medi_queue_notify/features/task/pages/task_form_page.dart';
 import 'package:medi_queue_notify/features/dashboard/pages/home_page.dart';
 import 'package:medi_queue_notify/features/auth/pages/payment_gateway_page.dart';
 import 'package:medi_queue_notify/features/task/pages/task_management_page.dart';
@@ -36,18 +35,7 @@ class WelcomePage extends StatelessWidget {
                 },
                 child: Text("Home"),
               ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          StaffMemberDetailsPage(title: "Staff Member Details"),
-                    ),
-                  );
-                },
-                child: Text("Staff Details"),
-              ),
+
               TextButton(
                 onPressed: () {
                   Navigator.push(

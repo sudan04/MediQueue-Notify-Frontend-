@@ -17,14 +17,14 @@ class AuthApiClient {
   }) async {
 
     final url = Uri.parse(
-      '$baseUrl/auth/v1/auth/login$type',
+      '$baseUrl/$type',
     );
 
     final response = await _client.post(
       url,
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
-        'phone': phone,
+        'phoneNumber': phone,
         'password': password,
       }),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medi_queue_notify/features/dashboard/widgets/drawerr.dart';
 import 'package:medi_queue_notify/features/patient/widgets/date_range_picker.dart';
 import 'package:medi_queue_notify/shared/widgets/custom_dropdown.dart';
 import '../widgets/search_field.dart';
@@ -42,6 +43,14 @@ class _PatientAdmissionsPageState extends State<PatientAdmissionsPage> {
     }).toList();
 
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          "Patient Admissions",
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        ),
+      ),
+      drawer: HomePageDrawer(),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Padding(
@@ -49,14 +58,6 @@ class _PatientAdmissionsPageState extends State<PatientAdmissionsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
-                child: Text(
-                  "Patient Admissions",
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(height: 16),
-
               // Custom search field
               SearchField(
                 controller: searchController,

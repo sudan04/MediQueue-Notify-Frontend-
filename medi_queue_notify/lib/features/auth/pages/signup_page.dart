@@ -2,11 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/pages/welcome_page.dart';
+import 'package:medi_queue_notify/shared/widgets/custom_date_picker.dart';
+import 'package:medi_queue_notify/shared/widgets/custom_dropdown.dart';
 import 'package:medi_queue_notify/shared/widgets/custom_elevated_button.dart';
 import 'package:medi_queue_notify/shared/widgets/custom_image_picker.dart';
 import 'package:medi_queue_notify/shared/widgets/custom_password_field.dart';
 import 'package:medi_queue_notify/shared/widgets/custom_radio_selector.dart';
 import 'package:medi_queue_notify/shared/widgets/custom_text_form_field.dart';
+import 'package:medi_queue_notify/shared/widgets/custom_time_picker.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -26,6 +29,29 @@ class _SignupPageState extends State<SignupPage> {
 
   final List<String> genderOptions = ["Male", "Female", "Other"];
   String? selectedGender;
+
+  final List<String> hospitalOptions = [
+    "Hospital A",
+    "Hospital B",
+    "Hospital C",
+  ];
+  String? selectedHospital;
+
+  final List<String> branches = ["Branch A", "Branch B", "Branch C"];
+  String? selectedBranch;
+
+  final List<String> patientTypes = ["Inpatient", "Outpatient"];
+  String? selectedPatient;
+
+  final List<String> specialists = ["Sp A", "Sp B", "Sp C"];
+  String? selectedSpcialist;
+
+  final List<String> doctors = ["Doctor A", "Doctor B", "Doctor C"];
+  String? selectedDoctor;
+
+  DateTime? selectedDate;
+
+  TimeOfDay? selectedTime;
 
   bool isPasswordVisible = false;
 
@@ -132,7 +158,102 @@ class _SignupPageState extends State<SignupPage> {
                 ),
 
                 SizedBox(height: 20),
+                // hospital dropdown
+                CustomDropdown(
+                  value: selectedHospital,
+                  items: hospitalOptions,
+                  itemBuilder: (hospitalName) => Text(hospitalName),
+                  onChanged: (value) => setState(() {
+                    selectedHospital = value;
+                  }),
+                  labelText: "Hospital",
+                  hintText: "Select Hospital",
+                ),
 
+                SizedBox(height: 20),
+
+                // hospital branch dropdown
+                CustomDropdown(
+                  value: selectedBranch,
+                  items: branches,
+                  itemBuilder: (branchName) => Text(branchName),
+                  onChanged: (value) => setState(() {
+                    selectedBranch = value;
+                  }),
+                  labelText: "Hospital Branch",
+                  hintText: "Select Hospital Branch",
+                ),
+
+                SizedBox(height: 20),
+
+                // patient type dropdown
+                CustomDropdown(
+                  value: selectedPatient,
+                  items: patientTypes,
+                  itemBuilder: (patientType) => Text(patientType),
+                  onChanged: (value) => setState(() {
+                    selectedPatient = value;
+                  }),
+                  labelText: "Patient Type",
+                  hintText: "Select Patient Type",
+                ),
+
+                if (selectedPatient != null &&
+                    selectedPatient!.isNotEmpty &&
+                    selectedPatient == "Inpatient") ...[
+                  SizedBox(height: 20),
+                  // doctor specialist dropdown
+                  CustomDropdown(
+                    value: selectedSpcialist,
+                    items: specialists,
+                    itemBuilder: (spcs) => Text(spcs),
+                    onChanged: (value) => setState(() {
+                      selectedSpcialist = value;
+                    }),
+                    labelText: "What specialist are you looking for",
+                    hintText: "Select specialist",
+                  ),
+
+                  SizedBox(height: 20),
+
+                  // select doctor dropdown
+                  CustomDropdown(
+                    value: selectedDoctor,
+                    items: doctors,
+                    itemBuilder: (doctor) => Text(doctor),
+                    onChanged: (value) => setState(() {
+                      selectedDoctor = value;
+                    }),
+                    labelText: "Select Doctor",
+                    hintText: "Select Doctor",
+                  ),
+
+                  SizedBox(height: 20),
+
+                  CustomDatePicker(
+                    labelText: "Appointment date",
+                    selectedDate: selectedDate,
+                    onDateSelected: (datePicked) {
+                      setState(() {
+                        selectedDate = datePicked;
+                      });
+                    },
+                  ),
+
+                  SizedBox(height: 20),
+
+                  CustomTimePicker(
+                    labelText: "Time",
+                    selectedTime: selectedTime,
+                    onTimeSelected: (timePicked) {
+                      setState(() {
+                        selectedTime = timePicked;
+                      });
+                    },
+                  ),
+                ],
+
+                SizedBox(height: 20),
                 // description field
                 CustomTextFormField(
                   controller: ddController,

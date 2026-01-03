@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medi_queue_notify/Model/demo/task.dart';
+import 'package:medi_queue_notify/features/dashboard/widgets/drawerr.dart';
 import 'package:medi_queue_notify/features/task/pages/task_form_page.dart';
 import 'package:medi_queue_notify/core/utils/lists.dart';
 import 'package:medi_queue_notify/features/task/widgets/task_tile.dart';
@@ -43,7 +44,7 @@ class _TaskManagementState extends State<TaskManagement> {
           ),
         ],
       ),
-
+      drawer: HomePageDrawer(),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
         child: Column(

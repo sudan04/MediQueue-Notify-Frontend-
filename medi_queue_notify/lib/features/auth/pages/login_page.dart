@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medi_queue_notify/features/auth/bloc/auth_bloc.dart';
 import 'package:medi_queue_notify/features/auth/pages/signup_page.dart';
 import 'package:medi_queue_notify/features/dashboard/pages/home_page.dart';
 import 'package:medi_queue_notify/pages/welcome_page.dart';
@@ -113,10 +115,62 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       width: double.infinity,
                       height: 48,
-                      child: CustomElevatedButton(
-                        icon: Icons.login,
-                        label: "Log In",
-                        onPressed: () => 
+                      child: BlocConsumer<AuthBloc, AuthState>(
+                        listener: (context, state) {
+                          if (state is AuthFailure) {
+                            print(state.errMsg);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("Login failed")),
+                            );
+                          }
+
+                          if (state is AuthSuccess) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(state.response.message),
+                                duration: Duration(seconds: 1),
+                              ),
+                            );
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WelcomePage(),
+                              ),
+                              (route) => false,
+                            );
+                          }
+                        },
+                        builder: (context, state) {
+                          if (state is AuthLoading) {
+                            return const Center(
+                              child: SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator.adaptive(
+                                  strokeWidth: 3,
+                                  backgroundColor: Colors.blue,
+                                ),
+                              ),
+                            );
+                          }
+
+                          return CustomElevatedButton(
+                            icon: Icons.login,
+                            label: "Log In",
+                            onPressed: () {
+                              final ph = phoneController.text.trim();
+                              final pass = passwordController.text.trim();
+                              final type = types[_selectedType];
+                              context.read<AuthBloc>().add(
+                                LoginRequested(
+                                  ph: ph,
+                                  password: pass,
+                                  type: type!.toLowerCase(),
+                                ),
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -153,25 +207,5 @@ class _LoginPageState extends State<LoginPage> {
       ).showSnackBar(const SnackBar(content: Text('Please fix errors')));
       return;
     }
-
-    setState(() => isLoading = true);
-    await Future.delayed(const Duration(seconds: 1));
-
-    if (phoneController.text == validPhone &&
-        passwordController.text == validPassword) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Login successful')));
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const WelcomePage()),
-      );
-    } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Invalid credentials')));
-    }
-
-    setState(() => isLoading = false);
   }
 }
